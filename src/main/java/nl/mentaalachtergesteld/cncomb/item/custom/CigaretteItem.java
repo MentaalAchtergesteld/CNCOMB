@@ -2,21 +2,16 @@ package nl.mentaalachtergesteld.cncomb.item.custom;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import nl.mentaalachtergesteld.cncomb.CNCOMB;
-import nl.mentaalachtergesteld.cncomb.capability.NicotineLevel;
 import nl.mentaalachtergesteld.cncomb.capability.NicotineLevelProvider;
 import org.jetbrains.annotations.NotNull;
 
@@ -70,7 +65,7 @@ public class CigaretteItem extends Item {
         int nicotineAddition = (int)((float)hitDuration * nicotinePerTick);
 
         pLivingEntity.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).ifPresent(nicotineLevel -> {
-            nicotineLevel.addNicotineLevel(nicotineAddition);
+            nicotineLevel.addNicotineLevel(nicotineAddition, (ServerPlayer) pLivingEntity);
             pLivingEntity.sendSystemMessage(Component.literal("y'know what im saying im saying"));
             pLivingEntity.sendSystemMessage(Component.literal("Nicotine level increased by: " + nicotineAddition));
             pLivingEntity.sendSystemMessage(Component.literal("Current nicotine level: " + nicotineLevel.getNicotineLevel()));
