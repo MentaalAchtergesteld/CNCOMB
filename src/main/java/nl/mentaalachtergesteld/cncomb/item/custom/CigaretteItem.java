@@ -1,5 +1,7 @@
 package nl.mentaalachtergesteld.cncomb.item.custom;
 
+import net.minecraft.commands.arguments.ParticleArgument;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -12,8 +14,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import nl.mentaalachtergesteld.cncomb.capability.NicotineLevel;
 import nl.mentaalachtergesteld.cncomb.capability.NicotineLevelProvider;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class CigaretteItem extends Item {
 
@@ -64,22 +70,29 @@ public class CigaretteItem extends Item {
         int hitDuration = this.getUseDuration(pStack) - pTimeCharged;
         int nicotineAddition = (int)((float)hitDuration * nicotinePerTick);
 
-        pLivingEntity.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).ifPresent(nicotineLevel -> {
-            nicotineLevel.addNicotineLevel(nicotineAddition, (ServerPlayer) pLivingEntity);
-            pLivingEntity.sendSystemMessage(Component.literal("y'know what im saying im saying"));
-            pLivingEntity.sendSystemMessage(Component.literal("Nicotine level increased by: " + nicotineAddition));
-            pLivingEntity.sendSystemMessage(Component.literal("Current nicotine level: " + nicotineLevel.getNicotineLevel()));
+        Optional<NicotineLevel> nicotineLevelOptional = pLevel.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).resolve();
 
-            for (int i = 0; i < 10; i++) {
-                double x = pLivingEntity.getX();
-                double y = pLivingEntity.getEyeY();
-                double z = pLivingEntity.getZ();
+        if(nicotineLevelOptional.isPresent()) {
+            NicotineLevel nicotineLevel = nicotineLevelOptional.get();
+            nicotineLevel.addNicotineLevel(nicotineAddition);
+        };
 
-                // Add smoke particles
-                ServerLevel serverLevel = (ServerLevel)pLevel;
-                serverLevel.addParticle(ParticleTypes.SMOKE, x, y+1, z, 0, 0, 0);
-            }
-        });
+        for (int i = 0; i < 10; i++) {
+            double x = pLivingEntity.getX();
+            double y = pLivingEntity.getEyeY();
+            double z = pLivingEntity.getZ();
+            Vec3 pos = pLivingEntity.getEyePosition()
+                    .add(Vec3.directionFromRotation(pLivingEntity.getRotationVector()));
+            // Add smoke particles
+            ServerLevel serverLevel = (ServerLevel)pLevel;
+            serverLevel.sendParticles(
+                    ParticleTypes.SMOKE,
+                    pos.x, pos.y, pos.z,
+                    3,
+                    0.0, 0.0, 0.0,
+                    0.0
+            );
+        }
 
         pStack.hurtAndBreak(1, pLivingEntity, livingEntity -> {
             onItemBreak(livingEntity.getMainHandItem(), pLivingEntity.level(), pLivingEntity);

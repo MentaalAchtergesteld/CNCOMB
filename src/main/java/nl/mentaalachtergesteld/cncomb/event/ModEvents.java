@@ -1,6 +1,7 @@
 package nl.mentaalachtergesteld.cncomb.event;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
@@ -16,6 +17,9 @@ import net.minecraftforge.fml.common.Mod;
 import nl.mentaalachtergesteld.cncomb.CNCOMB;
 import nl.mentaalachtergesteld.cncomb.capability.*;
 import nl.mentaalachtergesteld.cncomb.commands.SetNicotineCommand;
+import nl.mentaalachtergesteld.cncomb.util.NicotineHandler;
+
+import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = CNCOMB.MODID)
 public class ModEvents {
@@ -56,40 +60,7 @@ public class ModEvents {
     }
 
     public static void onPlayerServerTick(TickEvent.PlayerTickEvent event) {
-        // Multiply random numbers by 2000 to get % per second.
-
-        event.player.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).ifPresent(nicotineLevel -> {
-            if(nicotineLevel.getNicotineLevel() > 0 && event.player.getRandom().nextFloat() < 0.01f) {
-                nicotineLevel.subtractNicotineLevel(1);
-            }
-        });
-
-        event.player.getCapability(NicotineAddictionProvider.NICOTINE_ADDICTION_CAP).ifPresent(nicotineAddiction -> {
-            event.player.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).ifPresent(nicotineLevel -> {
-                if(nicotineLevel.getNicotineLevel() > 0) {
-                    if(event.player.getRandom().nextFloat() < 0.01) {
-                        nicotineAddiction.addNicotineLevel(1);
-                    }
-                }
-            });
-
-            if(nicotineAddiction.getNicotineAddiction() > 0 && event.player.getRandom().nextFloat() < 0.001f) {
-                nicotineAddiction.subtractNicotineLevel(1);
-            }
-        });
-
-        event.player.getCapability(WithdrawalProvider.WITHDRAWAL_CAP).ifPresent(withdrawal -> {
-            event.player.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).ifPresent(nicotineLevel -> {
-                event.player.getCapability(NicotineAddictionProvider.NICOTINE_ADDICTION_CAP).ifPresent(nicotineAddiction -> {
-                    if (nicotineAddiction.getNicotineAddiction() <= 0) return;
-                    if (nicotineLevel.getNicotineLevel() < nicotineAddiction.getNicotineAddiction() / 4) {
-                        if(event.player.getRandom().nextFloat() < (float)nicotineAddiction.getNicotineAddiction()/2000.f) {
-                            withdrawal.addWithdrawal(1);
-                        }
-                    }
-                });
-            });
-        });
+        NicotineHandler.handleNicotineEffects((ServerPlayer) event.player);
     }
 
     public static void onPlayerClientTick(TickEvent.PlayerTickEvent event) {
