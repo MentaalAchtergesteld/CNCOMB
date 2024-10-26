@@ -18,6 +18,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.cncomb_tab"))
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.CIGARETTE.get());
+                        output.accept(ModItems.TOBACCO_SEEDS.get());
                     })
                     .build());
 

@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import nl.mentaalachtergesteld.cncomb.block.ModBlocks;
 import nl.mentaalachtergesteld.cncomb.effect.ModEffects;
 import nl.mentaalachtergesteld.cncomb.item.ModCreativeModeTabs;
 import nl.mentaalachtergesteld.cncomb.item.ModItems;
@@ -31,6 +32,7 @@ public class CNCOMB {
 
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         ModEffects.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);

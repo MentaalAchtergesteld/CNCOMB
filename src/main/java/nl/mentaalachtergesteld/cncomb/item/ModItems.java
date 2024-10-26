@@ -2,6 +2,7 @@ package nl.mentaalachtergesteld.cncomb.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -9,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nl.mentaalachtergesteld.cncomb.CNCOMB;
+import nl.mentaalachtergesteld.cncomb.block.ModBlocks;
 import nl.mentaalachtergesteld.cncomb.item.custom.CigaretteItem;
 
 public class ModItems {
@@ -20,6 +22,9 @@ public class ModItems {
                     new Item.Properties()
                             .defaultDurability(10)
             ));
+
+    public static final RegistryObject<Item> TOBACCO_SEEDS = ITEMS.register("tobacco_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.TOBACCO_CROP.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
