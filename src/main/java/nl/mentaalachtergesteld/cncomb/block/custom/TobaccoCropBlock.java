@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import nl.mentaalachtergesteld.cncomb.item.ModItems;
 
 public class TobaccoCropBlock extends CropBlock {
-    public static final int MAX_AGE = 5;
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
+    public static final int MAX_AGE = 7;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 
     public TobaccoCropBlock(Properties pProperties) {
         super(pProperties);
@@ -23,7 +23,7 @@ public class TobaccoCropBlock extends CropBlock {
     }
 
     @Override
-    protected IntegerProperty getAgeProperty() {
+    public IntegerProperty getAgeProperty() {
         return AGE;
     }
 

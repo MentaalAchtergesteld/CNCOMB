@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import nl.mentaalachtergesteld.cncomb.CNCOMB;
 import nl.mentaalachtergesteld.cncomb.capability.NicotineLevel;
 import nl.mentaalachtergesteld.cncomb.capability.NicotineLevelProvider;
 import org.jetbrains.annotations.NotNull;
@@ -43,17 +44,6 @@ public class CigaretteItem extends Item {
     public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, @NotNull InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
-
-//        if(!pLevel.isClientSide()) {
-//            pPlayer.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).ifPresent(nicotineLevel -> {
-//                nicotineLevel.addNicotineLevel(5);
-//                pPlayer.sendSystemMessage(Component.literal("y'know what im saying im saying"));
-//                pPlayer.sendSystemMessage(Component.literal("Current nicotine level: " + nicotineLevel.getNicotineLevel()));
-//            });
-//            itemStack.hurtAndBreak(1, pPlayer, player -> player.broadcastBreakEvent(player.getUsedItemHand()));
-//        }
-
-
         return InteractionResultHolder.consume(itemStack);
     }
 
@@ -65,34 +55,37 @@ public class CigaretteItem extends Item {
     }
 
     @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        if (pLevel.isClientSide) return;
+        if(pLivingEntity.getRandom().nextFloat() > 0.25) return;
+        double x = pLivingEntity.getX();
+        double y = pLivingEntity.getEyeY();
+        double z = pLivingEntity.getZ();
+        Vec3 pos = pLivingEntity.getEyePosition()
+                .add(Vec3.directionFromRotation(pLivingEntity.getRotationVector()));
+        ServerLevel serverLevel = (ServerLevel)pLevel;
+        serverLevel.sendParticles(
+                ParticleTypes.SMOKE,
+                pos.x, pos.y, pos.z,
+                1,
+                0.0, 0.0, 0.0,
+                0.0
+        );
+    }
+
+    @Override
     public void releaseUsing(@NotNull ItemStack pStack, Level pLevel, @NotNull LivingEntity pLivingEntity, int pTimeCharged) {
         if (pLevel.isClientSide) return;
         int hitDuration = this.getUseDuration(pStack) - pTimeCharged;
         int nicotineAddition = (int)((float)hitDuration * nicotinePerTick);
 
-        Optional<NicotineLevel> nicotineLevelOptional = pLevel.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).resolve();
+        Optional<NicotineLevel> nicotineLevelOptional = pLivingEntity.getCapability(NicotineLevelProvider.NICOTINE_LEVEL_CAP).resolve();
 
         if(nicotineLevelOptional.isPresent()) {
+            CNCOMB.LOGGER.debug("Hi");
             NicotineLevel nicotineLevel = nicotineLevelOptional.get();
             nicotineLevel.addNicotineLevel(nicotineAddition);
         };
-
-        for (int i = 0; i < 10; i++) {
-            double x = pLivingEntity.getX();
-            double y = pLivingEntity.getEyeY();
-            double z = pLivingEntity.getZ();
-            Vec3 pos = pLivingEntity.getEyePosition()
-                    .add(Vec3.directionFromRotation(pLivingEntity.getRotationVector()));
-            // Add smoke particles
-            ServerLevel serverLevel = (ServerLevel)pLevel;
-            serverLevel.sendParticles(
-                    ParticleTypes.SMOKE,
-                    pos.x, pos.y, pos.z,
-                    3,
-                    0.0, 0.0, 0.0,
-                    0.0
-            );
-        }
 
         pStack.hurtAndBreak(1, pLivingEntity, livingEntity -> {
             onItemBreak(livingEntity.getMainHandItem(), pLivingEntity.level(), pLivingEntity);
