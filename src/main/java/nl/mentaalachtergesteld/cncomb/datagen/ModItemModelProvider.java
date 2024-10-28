@@ -19,6 +19,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModItems.CIGARETTE);
         simpleItem(ModItems.TOBACCO_SEEDS);
+        simpleItem(ModItems.TOBACCO_LEAF);
+        simpleItem(ModItems.DRIED_TOBACCO_LEAF);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

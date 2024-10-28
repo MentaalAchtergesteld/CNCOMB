@@ -23,11 +23,11 @@
                   }
                 }
               ],
-              "name": "cncomb:tobacco_seeds"
+              "name": "cncomb:tobacco_leaf"
             },
             {
               "type": "minecraft:item",
-              "name": "cncomb:cigarette"
+              "name": "cncomb:tobacco_seeds"
             }
           ]
         }
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "cncomb:cigarette"
+          "name": "cncomb:tobacco_seeds"
         }
       ],
       "rolls": 1.0

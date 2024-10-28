@@ -2,14 +2,14 @@
 Minecraft's most in-depth and immersive tobacco mod. I also don't know why.
 
 MVP Feature list:
--[ ] Tobacco Plant
--[ ] Tobacco
--[ ] Dried Tobacco
+-[X] Tobacco Plant
+-[X] Tobacco Leaf
+-[X] Dried Tobacco Leaf
 -[ ] Filter
 -[ ] A way of making filters
--[ ] Cigarettes
+-[X] Cigarettes
 -[ ] Cigarette packs
--[ ] Nicotine addiction
--[ ] Nicotine buzz
--[ ] Nicotine Sickness
+-[X] Nicotine addiction
+-[X] Nicotine buzz
+-[X] Nicotine Sickness
 -[ ] Crafting recipes, of course

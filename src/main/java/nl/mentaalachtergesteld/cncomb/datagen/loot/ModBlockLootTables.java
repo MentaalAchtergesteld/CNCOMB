@@ -28,8 +28,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.add(ModBlocks.TOBACCO_CROP.get(), createCropDrops(
                 ModBlocks.TOBACCO_CROP.get(),
+                ModItems.TOBACCO_LEAF.get(),
                 ModItems.TOBACCO_SEEDS.get(),
-                ModItems.CIGARETTE.get(),
                 lootItemConditionBuilder
         ));
     }
