@@ -1,0 +1,11 @@
+// 1.20.1	2024-10-28T04:00:25.050891677	Recipes
+f27e680c18e0835c408131e55a9a178555b056d4 data/cncomb/advancements/recipes/food/cigarette.json
+2377bb1ab62b6e94fc7298873cc46ecceb596c43 data/cncomb/advancements/recipes/misc/cigarette_pack.json
+351712103451256d29dcc5a78f0125cf6991da23 data/cncomb/advancements/recipes/misc/dried_tobacco_leaf_from_smelting.json
+f9eac2bf5b1656b68df3fa16c21f88da646ec277 data/cncomb/advancements/recipes/misc/dried_tobacco_leaf_from_smoking.json
+4f34e6e15760a6475eb12c05c6c885114b7f651b data/cncomb/advancements/recipes/misc/filter.json
+71db94c62ff8761c101638a8a6f323a764221faa data/cncomb/recipes/cigarette.json
+73f5a6c7ae68c823756bc197b51f5230afe4ad00 data/cncomb/recipes/cigarette_pack.json
+e42ab2cc413fd6c37016b2a38401203d7d32ac1b data/cncomb/recipes/dried_tobacco_leaf_from_smelting.json
+21563d40745f3ed8a0980f18be8a86510616605c data/cncomb/recipes/dried_tobacco_leaf_from_smoking.json
+0f39708613bcfb6beaeaa10ffecc42799a7b8034 data/cncomb/recipes/filter.json

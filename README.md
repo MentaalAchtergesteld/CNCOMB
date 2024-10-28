@@ -1,8 +1,8 @@
 # Certainly No Complaints On My Behalf
-Minecraft's most in-depth and immersive tobacco mod. I also don't know why.
+Minecraft's soon™ to be most in-depth and immersive tobacco mod. I also don't know why.
 
 MVP Feature list:
-- [ ] Wild Tobacco 
+- [X] Wild Tobacco 
 - [X] Tobacco Plant
 - [X] Tobacco Leaf
 - [X] Dried Tobacco Leaf

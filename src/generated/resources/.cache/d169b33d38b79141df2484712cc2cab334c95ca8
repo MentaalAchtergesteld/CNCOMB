@@ -1,0 +1,12 @@
+// 1.20.1	2024-10-28T18:56:13.001741665	Block States: cncomb
+adf4e54a7aee01f42e0f3b498ebc792cd23e61f9 assets/cncomb/blockstates/tobacco_crop.json
+a7b6327637b2b3d3e35995fd2e1ca2162313cf4e assets/cncomb/blockstates/wild_tobacco.json
+780941b025e8149f30f258c73efa8c7ae755c330 assets/cncomb/models/block/tobacco_crop_stage0.json
+1adac827c943961b9a081f020f8f350143c3aa27 assets/cncomb/models/block/tobacco_crop_stage1.json
+5d7905808070f41e43fcd0d125307787a5cf845f assets/cncomb/models/block/tobacco_crop_stage2.json
+a6f308ddc9026e3f333a186141da661841dcf177 assets/cncomb/models/block/tobacco_crop_stage3.json
+098bfd202cf8745eaf5d1e94e097dd057a81d4d6 assets/cncomb/models/block/tobacco_crop_stage4.json
+522a3d94e95a6450c22199a36999ff0a6ab5f7d8 assets/cncomb/models/block/tobacco_crop_stage5.json
+b5a9d1b3a9712f2f2588db3821668bfcabd4034a assets/cncomb/models/block/tobacco_crop_stage6.json
+bb8f94e49f3802a0ec6ae9fe2902ea756c3f6efd assets/cncomb/models/block/tobacco_crop_stage7.json
+bb8f94e49f3802a0ec6ae9fe2902ea756c3f6efd assets/cncomb/models/block/wild_tobacco.json
