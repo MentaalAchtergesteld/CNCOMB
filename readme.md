@@ -8,7 +8,7 @@ MVP Feature list:
 - [ ] Filter
 - [ ] A way of making filters
 - [X] Cigarettes
-- [ ] Cigarette packs
+- [X] Cigarette packs
 - [X] Nicotine addiction
 - [X] Nicotine buzz
 - [X] Nicotine Sickness

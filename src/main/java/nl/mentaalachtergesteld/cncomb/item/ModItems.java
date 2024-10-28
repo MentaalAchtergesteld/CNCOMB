@@ -12,6 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 import nl.mentaalachtergesteld.cncomb.CNCOMB;
 import nl.mentaalachtergesteld.cncomb.block.ModBlocks;
 import nl.mentaalachtergesteld.cncomb.item.custom.CigaretteItem;
+import nl.mentaalachtergesteld.cncomb.item.custom.CigarettePackItem;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -21,6 +22,12 @@ public class ModItems {
             () -> new CigaretteItem(
                     new Item.Properties()
                             .defaultDurability(10)
+            ));
+
+    public static final RegistryObject<Item> CIGARETTE_PACK = ITEMS.register("cigarette_pack",
+            () -> new CigarettePackItem(
+                    new Item.Properties()
+                            .stacksTo(1)
             ));
 
     public static final RegistryObject<Item> TOBACCO_SEEDS = ITEMS.register("tobacco_seeds",

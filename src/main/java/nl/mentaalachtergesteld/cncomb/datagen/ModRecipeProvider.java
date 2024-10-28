@@ -3,14 +3,12 @@ package nl.mentaalachtergesteld.cncomb.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import nl.mentaalachtergesteld.cncomb.CNCOMB;
 import nl.mentaalachtergesteld.cncomb.item.ModItems;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -20,7 +18,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
+    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
 
         simpleCookingRecipe(
                 pWriter,
@@ -29,6 +27,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 200,
                 ModItems.TOBACCO_LEAF.get(),
                 ModItems.DRIED_TOBACCO_LEAF.get(),
+                RecipeCategory.MISC,
                 0.1f
         );
         simpleCookingRecipe(
@@ -38,6 +37,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 100,
                 ModItems.TOBACCO_LEAF.get(),
                 ModItems.DRIED_TOBACCO_LEAF.get(),
+                RecipeCategory.MISC,
                 0.1f
         );
 
@@ -46,13 +46,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.PAPER)
                 .unlockedBy(getHasName(ModItems.DRIED_TOBACCO_LEAF.get()), has(ModItems.DRIED_TOBACCO_LEAF.get()))
                 .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CIGARETTE_PACK.get())
+                .pattern("P P")
+                .pattern("P P")
+                .pattern("PPP")
+                .define('P', Items.PAPER)
+                .unlockedBy(getHasName(ModItems.CIGARETTE.get()), has(ModItems.CIGARETTE.get()))
+                .save(pWriter);
     }
 
-    protected static void simpleCookingRecipe(Consumer<FinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, int pCookingTime, ItemLike pIngredient, ItemLike pResult, float pExperience) {
+    protected static void simpleCookingRecipe(Consumer<FinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, int pCookingTime, ItemLike pIngredient, ItemLike pResult, RecipeCategory category, float pExperience) {
         SimpleCookingRecipeBuilder.
                 generic(
                         Ingredient.of(pIngredient),
-                        RecipeCategory.FOOD,
+                        category,
                         pResult,
                         pExperience,
                         pCookingTime,

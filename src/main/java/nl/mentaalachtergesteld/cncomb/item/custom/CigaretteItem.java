@@ -44,14 +44,7 @@ public class CigaretteItem extends Item {
     public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, @NotNull InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
-        return InteractionResultHolder.consume(itemStack);
-    }
-
-    private void onItemBreak(ItemStack stack, Level level, LivingEntity livingEntity) {
-
-    }
-
-    private void spawnSmokeParticles(Level level, Player player) {
+        return InteractionResultHolder.success(itemStack);
     }
 
     @Override
@@ -87,8 +80,6 @@ public class CigaretteItem extends Item {
             nicotineLevel.addNicotineLevel(nicotineAddition);
         };
 
-        pStack.hurtAndBreak(1, pLivingEntity, livingEntity -> {
-            onItemBreak(livingEntity.getMainHandItem(), pLivingEntity.level(), pLivingEntity);
-        });
+        pStack.hurtAndBreak(1, pLivingEntity, livingEntity -> {});
     }
 }
