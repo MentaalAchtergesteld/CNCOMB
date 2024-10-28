@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import nl.mentaalachtergesteld.cncomb.CNCOMB;
@@ -23,17 +24,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        makeTobaccoCropStates((TobaccoCropBlock) ModBlocks.TOBACCO_CROP.get(), "tobacco_crop_stage", "tobacco_plant_stage");
+        makeCropStates((CropBlock) ModBlocks.TOBACCO_CROP.get(), "tobacco_crop_stage", "tobacco_plant_stage");
+
+
+        simpleBlock(
+                ModBlocks.WILD_TOBACCO.get(),
+                new ConfiguredModel(models()
+                                .crop("wild_tobacco", new ResourceLocation(CNCOMB.MODID, "block/tobacco_plant_stage7"))
+                                .renderType("cutout"))
+        );
     }
 
-    private void makeTobaccoCropStates(TobaccoCropBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> tobaccoCropStates(state, block, modelName, textureName);
+    private void makeCropStates(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, block, modelName, textureName);
         getVariantBuilder(block).forAllStates(function);
     }
 
-    private ConfiguredModel[] tobaccoCropStates(BlockState state, TobaccoCropBlock block, String modelName, String textureName) {
+    private ConfiguredModel[] cropStates(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((TobaccoCropBlock)block).getAgeProperty()),
+        models[0] = new ConfiguredModel(models().crop(modelName + block.getAge(state),
                 new ResourceLocation(CNCOMB.MODID, "block/" + textureName + state.getValue(((TobaccoCropBlock) block).getAgeProperty()))).renderType("cutout"));
 
         return  models;

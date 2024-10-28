@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraftforge.registries.RegistryObject;
 import nl.mentaalachtergesteld.cncomb.block.ModBlocks;
 import nl.mentaalachtergesteld.cncomb.block.custom.TobaccoCropBlock;
@@ -31,6 +32,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModItems.TOBACCO_LEAF.get(),
                 ModItems.TOBACCO_SEEDS.get(),
                 lootItemConditionBuilder
+        ));
+
+        this.add(ModBlocks.WILD_TOBACCO.get(), createCropDrops(
+                ModBlocks.WILD_TOBACCO.get(),
+                ModItems.TOBACCO_LEAF.get(),
+                ModItems.TOBACCO_SEEDS.get(),
+                LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(ModBlocks.WILD_TOBACCO.get())
+
         ));
     }
 

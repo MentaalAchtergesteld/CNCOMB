@@ -22,6 +22,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> TOBACCO_CROP = BLOCKS.register("tobacco_crop",
             () -> new TobaccoCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
+    public static final RegistryObject<Block> WILD_TOBACCO = BLOCKS.register("wild_tobacco",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GRASS).noOcclusion().noCollission()));
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> blockRegistryObject = BLOCKS.register(name, block);
         registerBlockItem(name, blockRegistryObject);

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": "cncomb:patch_wild_tobacco",
+  "step": "vegetal_decoration"
+}
