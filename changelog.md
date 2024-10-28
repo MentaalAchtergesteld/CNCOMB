@@ -6,7 +6,7 @@
 M.V.P. DONE!
 
 ### Additions
-- AddedWild tobacco
+- Added Wild tobacco
   - Spawns in any Jungle biome
   - Provides a source of Tobacco Seeds to start your plantation with.
 - Added Tobacco Plant
