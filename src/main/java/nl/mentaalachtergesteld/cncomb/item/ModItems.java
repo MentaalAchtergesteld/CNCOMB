@@ -39,6 +39,9 @@ public class ModItems {
     public static final RegistryObject<Item> DRIED_TOBACCO_LEAF = ITEMS.register("dried_tobacco_leaf",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> FILTER = ITEMS.register("filter",
+            () -> new Item(new Item.Properties()));
+    
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

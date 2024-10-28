@@ -2,6 +2,8 @@ package nl.mentaalachtergesteld.cncomb.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -41,9 +43,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 0.1f
         );
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CIGARETTE.get())
-                .requires(ModItems.DRIED_TOBACCO_LEAF.get())
-                .requires(Items.PAPER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.FILTER.get(), 20)
+                .pattern("PPP")
+                .pattern("PWP")
+                .pattern("PPP")
+                .define('P', Items.PAPER)
+                .define('W', ItemTags.WOOL)
+                .unlockedBy(getHasName(Items.PAPER), has(Items.PAPER))
+                .unlockedBy("has_wool", has(ItemTags.WOOL))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CIGARETTE.get())
+                .pattern("PTF")
+                .define('P', Items.PAPER)
+                .define('T', ModItems.DRIED_TOBACCO_LEAF.get())
+                .define('F', ModItems.FILTER.get())
                 .unlockedBy(getHasName(ModItems.DRIED_TOBACCO_LEAF.get()), has(ModItems.DRIED_TOBACCO_LEAF.get()))
                 .save(pWriter);
 

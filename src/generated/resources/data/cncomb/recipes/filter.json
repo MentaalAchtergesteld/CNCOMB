@@ -2,21 +2,21 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "F": {
-      "item": "cncomb:filter"
-    },
     "P": {
       "item": "minecraft:paper"
     },
-    "T": {
-      "item": "cncomb:dried_tobacco_leaf"
+    "W": {
+      "tag": "minecraft:wool"
     }
   },
   "pattern": [
-    "PTF"
+    "PPP",
+    "PWP",
+    "PPP"
   ],
   "result": {
-    "item": "cncomb:cigarette"
+    "count": 20,
+    "item": "cncomb:filter"
   },
   "show_notification": true
 }

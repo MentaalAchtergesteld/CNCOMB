@@ -19,6 +19,7 @@ public class ModCreativeModeTabs {
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.CIGARETTE.get());
                         output.accept(ModItems.CIGARETTE_PACK.get());
+                        output.accept(ModItems.FILTER.get());
                         output.accept(ModItems.TOBACCO_SEEDS.get());
                         output.accept(ModItems.TOBACCO_LEAF.get());
                         output.accept(ModItems.DRIED_TOBACCO_LEAF.get());

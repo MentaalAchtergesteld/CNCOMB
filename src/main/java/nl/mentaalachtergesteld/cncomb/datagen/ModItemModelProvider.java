@@ -22,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.TOBACCO_SEEDS);
         simpleItem(ModItems.TOBACCO_LEAF);
         simpleItem(ModItems.DRIED_TOBACCO_LEAF);
+        simpleItem(ModItems.FILTER);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
