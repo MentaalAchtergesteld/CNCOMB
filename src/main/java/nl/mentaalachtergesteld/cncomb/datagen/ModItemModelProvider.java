@@ -18,6 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ModItems.CIGARETTE);
+        simpleItem(ModItems.LIT_CIGARETTE);
         simpleItem(ModItems.CIGARETTE_PACK);
         simpleItem(ModItems.TOBACCO_SEEDS);
         simpleItem(ModItems.TOBACCO_LEAF);
