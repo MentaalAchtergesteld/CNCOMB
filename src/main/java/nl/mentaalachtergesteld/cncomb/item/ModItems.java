@@ -21,6 +21,7 @@ public class ModItems {
     public static final RegistryObject<Item> CIGARETTE = ITEMS.register("cigarette",
             () -> new CigaretteItem(
                     new Item.Properties()
+
                             .defaultDurability(10)
             ));
 
